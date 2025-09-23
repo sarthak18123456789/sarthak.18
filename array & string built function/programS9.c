@@ -1,0 +1,20 @@
+#include<stdio.h>
+void main()
+{
+	printf("hello");
+	char str1[]="sarthak";
+	char str2[]="sarthak";
+	
+	
+	char *pos=strstr(str1,str2);
+	if(*pos != "/0")
+	{
+	pprintf("substring \"%s\" found at position:%td",str2,pos-str1);
+	printf("Remaining string from match: %s\n", pos);
+	}
+	else
+	{
+		printf("substring \"%s\" not found\n",str2);
+	}
+
+}
