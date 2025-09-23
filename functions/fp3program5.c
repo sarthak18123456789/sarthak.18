@@ -1,0 +1,18 @@
+#include<stdio.h>
+void chechar(char);
+void main()
+{
+	chechar('z');
+}
+void chechar(char a)
+{
+		char c='Z';
+	if (c=='a'|| c=='e'|| c=='i'|| c=='o'|| c=='u'|| c=='y'||c=='A'|| c=='E'|| c=='I'|| c=='O'|| c=='U'|| c=='Y')
+	{
+		printf("it is vowel");
+	}
+	else
+	{
+		printf("it is consonant");
+	}
+}
