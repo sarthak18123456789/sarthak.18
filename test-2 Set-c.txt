@@ -1,0 +1,46 @@
+test-2 Set-c
+
+Que-1
+select * from actors;
+
+Que-2
+select * from movie
+order by rating desc;
+
+Que-3
+select * from actors
+where gender=male and
+awards>10;
+
+Que-4
+select role ,movie_id
+from actor_movie
+where actor_id=101;
+
+Que-5
+select * from actors
+where nationality != Indian;
+
+Que-6
+select movie_id ,count(actor_id) num_actors
+from actor_movie
+group by movie_id;
+
+Que-7
+select role from actor_movie
+where actor_name = 'Amir Khan'and movie_name = '3 Idiots';
+
+Que-8
+select * from movie
+order by budget desc
+limit 1;
+
+Que-9
+select gender,count(*)as actor_count
+from actors
+group by gender;
+
+Que-10
+select role from actor_movies
+where movie_id=3;
+
