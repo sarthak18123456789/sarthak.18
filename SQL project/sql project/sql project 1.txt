@@ -1,0 +1,366 @@
+project 1
+
+mysql> create table airline
+    -> (airline_id int primary key,
+    -> airline_name varchar(20),
+    -> airline_code int);
+
+mysql> create table aircarft
+    -> (aircarft_id int primary key,
+    -> model varchar(20),
+    -> manfacture_date Date,
+    -> capasity int,
+    -> type ENUM('economy','business','first_class'));
+
+mysql> create table seating_configration
+    -> (configrationi_id int primary key,
+    -> aircarft_id int,
+    -> total_rows int,
+    -> seat_count int,
+    -> type ENUM('economy','business','first_class'));
+
+ create table itineraries_flights
+    -> (itineraries_flight_id int primary key,
+    -> arrival_time int,
+    -> seat_no int,
+    -> flight_id int,
+    -> itineraries_id int,
+    -> departure_time int);
+
+mysql> create table itineraries
+    -> (itineraries_id int primary key,
+    -> passenger_id int,
+    -> status varchar(20),
+    -> booking_date Date);
+
+mysql> create table fare
+    -> (fare_id int primary key,
+    -> effective_date Date,
+    -> rxpire_date Date,
+    -> seatclass_id int,
+    -> flight_id int,
+    -> price int);
+
+mysql> create table seat_class
+    -> (description varchar(50),
+    -> seat_class int,
+    -> class_name varchar(20));
+
+mysql> INSERT INTO user (user_name, f_name, l_name, age, phone_no, gender, address) VALUES
+    -> ('user01', 'Aarav', 'Patel', 25, 9876543210, 'Male', 'Mumbai'),
+    -> ('user02', 'Priya', 'Sharma', 28, 9876501234, 'Female', 'Pune'),
+    -> ('user03', 'Rohan', 'Verma', 22, 9823456789, 'Male', 'Delhi'),
+    -> ('user04', 'Ananya', 'Mehta', 30, 9812345678, 'Female', 'Bangalore'),
+    -> ('user05', 'Vikram', 'Nair', 35, 9123456780, 'Male', 'Chennai'),
+    -> ('user06', 'Sneha', 'Reddy', 27, 9988776655, 'Female', 'Hyderabad'),
+    -> ('user07', 'Karan', 'Kapoor', 24, 9090909090, 'Male', 'Jaipur'),
+    -> ('user08', 'Pooja', 'Joshi', 29, 9345678901, 'Female', 'Ahmedabad'),
+    -> ('user09', 'Aditya', 'Singh', 31, 9456123789, 'Male', 'Lucknow'),
+    -> ('user10', 'Isha', 'Desai', 26, 9876123456, 'Female', 'Surat'),
+    -> ('user11', 'Rahul', 'Gupta', 32, 9988123456, 'Male', 'Nagpur'),
+    -> ('user12', 'Neha', 'Bose', 23, 9123987654, 'Female', 'Kolkata'),
+    -> ('user13', 'Manish', 'Thakur', 29, 9345098765, 'Male', 'Indore'),
+    -> ('user14', 'Kavita', 'Rao', 27, 9543126789, 'Female', 'Goa'),
+    -> ('user15', 'Sanjay', 'Pillai', 33, 9678451230, 'Male', 'Trivandrum'),
+    -> ('user16', 'Aditi', 'Ghosh', 21, 9845012345, 'Female', 'Bhopal'),
+    -> ('user17', 'Ritesh', 'Yadav', 36, 9911223344, 'Male', 'Patna'),
+    -> ('user18', 'Divya', 'Shetty', 25, 9822334455, 'Female', 'Mangalore'),
+    -> ('user19', 'Nikhil', 'Kumar', 28, 9988771122, 'Male', 'Chandigarh'),
+    -> ('user20', 'Meera', 'Banerjee', 30, 9867452301, 'Female', 'Ranchi');
+
+
+mysql> INSERT INTO flight (flight_no, origin, dept_time, flight_name, arrival_time, destination, distance, departure_time) VALUES
+    -> (101, 'Mumbai', 800, 'Air India 101', 1030, 'Delhi', 1400, 800),
+    -> (102, 'Delhi', 900, 'IndiGo 202', 1130, 'Mumbai', 1400, 900),
+    -> (103, 'Pune', 700, 'SpiceJet 303', 830, 'Hyderabad', 560, 700),
+    -> (104, 'Hyderabad', 930, 'GoAir 404', 1100, 'Pune', 560, 930),
+    -> (105, 'Bangalore', 600, 'Vistara 505', 830, 'Chennai', 350, 600),
+    -> (106, 'Chennai', 700, 'Air India 606', 930, 'Bangalore', 350, 700),
+    -> (107, 'Kolkata', 530, 'IndiGo 707', 800, 'Delhi', 1300, 530),
+    -> (108, 'Delhi', 830, 'Vistara 808', 1100, 'Kolkata', 1300, 830),
+    -> (109, 'Mumbai', 1030, 'SpiceJet 909', 1200, 'Goa', 450, 1030),
+    -> (110, 'Goa', 1230, 'GoAir 1010', 1400, 'Mumbai', 450, 1230),
+    -> (111, 'Ahmedabad', 745, 'Air India 111', 930, 'Delhi', 950, 745),
+    -> (112, 'Delhi', 1015, 'IndiGo 112', 1200, 'Ahmedabad', 950, 1015),
+    -> (113, 'Bangalore', 830, 'Vistara 113', 1030, 'Hyderabad', 570, 830),
+    -> (114, 'Hyderabad', 1115, 'SpiceJet 114', 1315, 'Bangalore', 570, 1115),
+    -> (115, 'Mumbai', 1300, 'IndiGo 115', 1530, 'Chennai', 1230, 1300),
+    -> (116, 'Chennai', 1600, 'Air India 116', 1830, 'Mumbai', 1230, 1600),
+    -> (117, 'Pune', 645, 'Vistara 117', 815, 'Delhi', 1150, 645),
+    -> (118, 'Delhi', 945, 'GoAir 118', 1115, 'Pune', 1150, 945),
+    -> (119, 'Goa', 830, 'SpiceJet 119', 1030, 'Bangalore', 580, 830),
+    -> (120, 'Bangalore', 1130, 'Vistara 120', 1330, 'Goa', 580, 1130);
+
+INSERT INTO passenger (name, gender, date_of_birth, address, mobile_no, age)
+VALUES
+('Rahul Sharma', 'Male', '1998-05-14', 'Pune', 9876543210, 27),
+('Priya Deshmukh', 'Female', '1999-03-22', 'Mumbai', 9867543210, 26),
+('Amit Verma', 'Male', '1987-07-10', 'Nagpur', 9123456789, 38),
+('Neha Patil', 'Female', '1995-09-01', 'Pune', 9988776655, 30),
+('Ravi Singh', 'Male', '2000-01-05', 'Nashik', 9898989898, 25),
+('Sneha Joshi', 'Female', '1997-11-20', 'Mumbai', 9090909090, 28),
+('Rajesh Gupta', 'Male', '1985-04-10', 'Nagpur', 9777777777, 40),
+('Kiran Patil', 'Male', '1992-12-25', 'Thane', 9444444444, 33),
+('Anjali Sharma', 'Female', '1998-05-14', 'Pune', 9555555555, 27),
+('Suresh Rane', 'Male', '1996-08-09', 'Mumbai', 9666666666, 29),
+('Deepa Kulkarni', 'Female', '1994-02-11', 'Nashik', 9333333333, 31),
+('Vikram Desai', 'Male', '1991-07-19', 'Nagpur', 9222222222, 34),
+('Meena Pawar', 'Female', '1988-03-03', 'Pune', 9111111111, 37),
+('Arjun Mehta', 'Male', '1990-06-23', 'Mumbai', 9000000000, 35),
+('Rita Patil', 'Female', '1995-05-17', 'Thane', 9999999999, 30),
+('Sahil Khan', 'Male', '2001-08-30', 'Pune', 9888888888, 24),
+('Nikita More', 'Female', '2002-01-02', 'Nashik', 9777777771, 23),
+('Prakash Yadav', 'Male', '1989-09-15', 'Nagpur', 9666666611, 36),
+('Swati Joshi', 'Female', '1993-11-19', 'Mumbai', 9555555544, 32),
+('Rahul Sharma', 'Male', '1998-05-14', 'Pune', 9876543211, 27);
+
+mysql> INSERT INTO ticket (PNR_no, seat_no, time, date, destination, price)
+    -> VALUES
+    -> (1001,  '12A', 930,  '2025-10-15', 'Delhi', 4500),
+    -> (1002,  '14B', 1130, '2025-10-16', 'Mumbai', 4200),
+    -> (1003,  '15C', 845,  '2025-10-17', 'Chennai', 5600),
+    -> (1004,  '16D', 1045, '2025-10-18', 'Kolkata', 4900),
+    -> (1005,  '17A', 730,  '2025-10-19', 'Bengaluru', 5100),
+    -> (1006,  '18B', 1530, '2025-10-20', 'Hyderabad', 4600),
+    -> (1007,  '19C', 945,  '2025-10-21', 'Pune', 4700),
+    -> (1008,  '20D', 1400, '2025-10-22', 'Ahmedabad', 4400),
+    -> (1009,  '21A', 1830, '2025-10-23', 'Delhi', 4800),
+    -> (1010,  '22B', 845,  '2025-10-24', 'Mumbai', 5000),
+    -> (1011,  '23C', 930,  '2025-10-25', 'Chennai', 5500),
+    -> (1012,  '24D', 1045, '2025-10-26', 'Kolkata', 4600),
+    -> (1013,  '25A', 1200, '2025-10-27', 'Bengaluru', 5200),
+    -> (1014,  '26B', 1730, '2025-10-28', 'Hyderabad', 4300),
+    -> (1015,  '27C', 745,  '2025-10-29', 'Pune', 4900),
+    -> (1016,  '28D', 945,  '2025-10-30', 'Delhi', 5100),
+    -> (1017,  '29A', 1530, '2025-10-31', 'Kolkata', 4700),
+    -> (1018,  '30B', 1645, '2025-11-01', 'Mumbai', 4500),
+    -> (1019,  '31C', 1230, '2025-11-02', 'Bengaluru', 5300),
+    -> (1020,  '32D', 830,  '2025-11-03', 'Chennai', 4800);
+
+INSERT INTO payment (transaction_id, payment_mode, amount)
+VALUES
+(2001, 'UPI', 4500),
+(2002, 'Credit Card', 4200),
+(2003, 'Debit Card', 5600),
+(2004, 'Net Banking', 4900),
+(2005, 'Cash', 5100),
+(2006, 'UPI', 4600),
+(2007, 'Credit Card', 4700),
+(2008, 'Debit Card', 4400),
+(2009, 'Net Banking', 4800),
+(2010, 'UPI', 5000),
+(2011, 'Cash', 5500),
+(2012, 'Credit Card', 4600),
+(2013, 'UPI', 5200),
+(2014, 'Net Banking', 4300),
+(2015, 'Debit Card', 4900),
+(2016, 'UPI', 5100),
+(2017, 'Credit Card', 4700),
+(2018, 'Cash', 4500),
+(2019, 'UPI', 5300),
+(2020, 'Net Banking', 4800);
+
+mysql> INSERT INTO pilots (name, experience, license_no, post)
+    -> VALUES
+    -> ('John', 5, 'LIC001', 'Captain'),
+    -> ('Alice', 3, 'LIC002', 'FirstOfficer'),
+    -> ('Bob', 4, 'LIC003', 'SubCaptain'),
+    -> ('Eve', 6, 'LIC004', 'Captain'),
+    -> ('Charlie', 2, 'LIC005', 'FirstOfficer'),
+    -> ('David', 5, 'LIC006', 'SubCaptain'),
+    -> ('Fiona', 3, 'LIC007', 'Captain'),
+    -> ('Grace', 4, 'LIC008', 'FirstOfficer'),
+    -> ('Henry', 2, 'LIC009', 'SubCaptain'),
+    -> ('Ivy', 6, 'LIC010', 'Captain'),
+    -> ('Jack', 5, 'LIC011', 'FirstOfficer'),
+    -> ('Karen', 3, 'LIC012', 'SubCaptain'),
+    -> ('Leo', 4, 'LIC013', 'Captain'),
+    -> ('Mia', 2, 'LIC014', 'FirstOfficer'),
+    -> ('Nina', 5, 'LIC015', 'SubCaptain'),
+    -> ('Oscar', 3, 'LIC016', 'Captain'),
+    -> ('Paul', 4, 'LIC017', 'FirstOfficer'),
+    -> ('Quinn', 2, 'LIC018', 'SubCaptain'),
+    -> ('Rita', 6, 'LIC019', 'Captain'),
+    -> ('Steve', 5, 'LIC020', 'FirstOfficer');
+
+INSERT INTO crew_member (crew_id, DOB, Email, mobile_no, name, emp_no) VALUES
+(1, '1985-01-10', 'john@example.com', '9876543210', 'John Doe', 1001),
+(2, '1990-03-15', 'alice@example.com', '9876543211', 'Alice Smith', 1002),
+(3, '1988-07-20', 'bob@example.com', '9876543212', 'Bob Johnson', 1003),
+(4, '1992-11-05', 'emma@example.com', '9876543213', 'Emma Brown', 1004),
+(5, '1987-06-18', 'mike@example.com', '9876543214', 'Mike Davis', 1005),
+(6, '1989-02-12', 'linda@example.com', '9876543215', 'Linda Wilson', 1006),
+(7, '1991-09-30', 'james@example.com', '9876543216', 'James Moore', 1007),
+(8, '1986-12-25', 'susan@example.com', '9876543217', 'Susan Taylor', 1008),
+(9, '1985-05-05', 'david@example.com', '9876543218', 'David Anderson', 1009),
+(10, '1993-08-14', 'nancy@example.com', '9876543219', 'Nancy Thomas', 1010),
+(11, '1984-04-01', 'kevin@example.com', '9876543220', 'Kevin Jackson', 1011),
+(12, '1987-10-22', 'laura@example.com', '9876543221', 'Laura White', 1012),
+(13, '1990-01-09', 'steve@example.com', '9876543222', 'Steve Harris', 1013),
+(14, '1989-03-11', 'betty@example.com', '9876543223', 'Betty Martin', 1014),
+(15, '1992-07-19', 'paul@example.com', '9876543224', 'Paul Thompson', 1015),
+(16, '1988-11-28', 'carol@example.com', '9876543225', 'Carol Garcia', 1016),
+(17, '1991-02-17', 'brian@example.com', '9876543226', 'Brian Martinez', 1017),
+(18, '1986-06-06', 'diana@example.com', '9876543227', 'Diana Robinson', 1018),
+(19, '1985-09-13', 'frank@example.com', '9876543228', 'Frank Clark', 1019),
+(20, '1993-12-02', 'gina@example.com', '9876543229', 'Gina Rodriguez', 1020);
+
+INSERT INTO airline (airline_id, airline_name, airline_code) VALUES
+(1, 'Air India', 'AI'),
+(2, 'IndiGo', '6E'),
+(3, 'SpiceJet', 'SG'),
+(4, 'Vistara', 'UK'),
+(5, 'GoAir', 'G8'),
+(6, 'Emirates', 'EK'),
+(7, 'Qatar Airways', 'QR'),
+(8, 'British Airways', 'BA'),
+(9, 'Lufthansa', 'LH'),
+(10, 'Singapore Airlines', 'SQ'),
+(11, 'Cathay Pacific', 'CX'),
+(12, 'Turkish Airlines', 'TK'),
+(13, 'American Airlines', 'AA'),
+(14, 'Delta Airlines', 'DL'),
+(15, 'United Airlines', 'UA'),
+(16, 'Japan Airlines', 'JL'),
+(17, 'Air France', 'AF'),
+(18, 'KLM Royal Dutch', 'KL'),
+(19, 'Etihad Airways', 'EY'),
+(20, 'Malaysia Airlines', 'MH');
+
+
+mysql> INSERT INTO aircraft (aircraft_id, model, manufacture_date, capacity, type) VALUES
+    -> (1, 'Boeing 737', '2010-05-12', 160, 'economy'),
+    -> (2, 'Airbus A320', '2012-07-25', 150, 'economy'),
+    -> (3, 'Boeing 777', '2015-03-18', 396, 'business'),
+    -> (4, 'Airbus A380', '2014-11-09', 500, 'first_class'),
+    -> (5, 'Boeing 747', '2008-08-20', 416, 'business'),
+    -> (6, 'Embraer E190', '2016-02-14', 100, 'economy'),
+    -> (7, 'Bombardier CRJ900', '2013-06-30', 90, 'economy'),
+    -> (8, 'Boeing 787', '2017-01-22', 335, 'business'),
+    -> (9, 'Airbus A350', '2018-09-10', 350, 'first_class'),
+    -> (10, 'McDonnell Douglas DC-10', '2005-12-15', 270, 'business'),
+    -> (11, 'Boeing 737 MAX', '2019-04-17', 175, 'economy'),
+    -> (12, 'Airbus A321', '2020-07-12', 185, 'economy'),
+    -> (13, 'Concorde', '2003-03-02', 100, 'first_class'),
+    -> (14, 'Boeing 767', '2011-05-05', 290, 'business'),
+    -> (15, 'Airbus A330', '2012-09-21', 300, 'business'),
+    -> (16, 'Embraer E195', '2016-10-18', 110, 'economy'),
+    -> (17, 'Bombardier CS300', '2015-08-22', 130, 'economy'),
+    -> (18, 'Boeing 777X', '2021-01-15', 426, 'first_class'),
+    -> (19, 'Airbus A220', '2019-06-28', 120, 'economy'),
+    -> (20, 'Tupolev Tu-204', '2009-11-30', 210, 'business');
+Query OK, 20 rows affected (0.01 sec)
+
+
+mysql> INSERT INTO seating_configuration (configuration_id, aircraft_id, total_rows, seat_count, type) VALUES
+    -> (1, 101, 25, 150, 'economy'),
+    -> (2, 101, 5, 30, 'business'),
+    -> (3, 101, 2, 10, 'first_class'),
+    -> (4, 102, 30, 180, 'economy'),
+    -> (5, 102, 6, 36, 'business'),
+    -> (6, 102, 2, 8, 'first_class'),
+    -> (7, 103, 20, 120, 'economy'),
+    -> (8, 103, 4, 24, 'business'),
+    -> (9, 103, 2, 8, 'first_class'),
+    -> (10, 104, 28, 160, 'economy'),
+    -> (11, 104, 5, 25, 'business'),
+    -> (12, 104, 2, 6, 'first_class'),
+    -> (13, 105, 18, 108, 'economy'),
+    -> (14, 105, 3, 18, 'business'),
+    -> (15, 105, 2, 8, 'first_class'),
+    -> (16, 106, 35, 210, 'economy'),
+    -> (17, 106, 6, 36, 'business'),
+    -> (18, 106, 3, 12, 'first_class'),
+    -> (19, 107, 22, 132, 'economy'),
+    -> (20, 107, 4, 20, 'business');
+
+mysql> INSERT INTO itineraries (itineraries_id, passenger_id, status, booking_date) VALUES
+    -> (1, 201, 'confirmed', '2025-10-01'),
+    -> (2, 202, 'pending', '2025-10-02'),
+    -> (3, 203, 'cancelled', '2025-10-03'),
+    -> (4, 204, 'confirmed', '2025-10-04'),
+    -> (5, 205, 'pending', '2025-10-05'),
+    -> (6, 206, 'confirmed', '2025-10-06'),
+    -> (7, 207, 'cancelled', '2025-10-07'),
+    -> (8, 208, 'confirmed', '2025-10-08'),
+    -> (9, 209, 'pending', '2025-10-09'),
+    -> (10, 210, 'confirmed', '2025-10-10'),
+    -> (11, 211, 'cancelled', '2025-10-11'),
+    -> (12, 212, 'confirmed', '2025-10-12'),
+    -> (13, 213, 'pending', '2025-10-13'),
+    -> (14, 214, 'confirmed', '2025-10-14'),
+    -> (15, 215, 'cancelled', '2025-10-15'),
+    -> (16, 216, 'confirmed', '2025-10-16'),
+    -> (17, 217, 'pending', '2025-10-17'),
+    -> (18, 218, 'confirmed', '2025-10-18'),
+    -> (19, 219, 'cancelled', '2025-10-19'),
+    -> (20, 220, 'confirmed', '2025-10-20');
+
+mysql> INSERT INTO itineraries_flights
+    -> (itineraries_flight_id, arrival_time, departure_time, seat_no, flight_id, itineraries_id)
+    -> VALUES
+    -> (1, '09:00:00', '07:00:00', 1, 301, 1),
+    -> (2, '12:00:00', '10:00:00', 2, 302, 2),
+    -> (3, '15:00:00', '13:00:00', 3, 303, 3),
+    -> (4, '18:00:00', '16:00:00', 4, 304, 4),
+    -> (5, '21:00:00', '19:00:00', 5, 305, 5),
+    -> (6, '08:30:00', '06:00:00', 6, 306, 6),
+    -> (7, '11:00:00', '09:00:00', 7, 307, 7),
+    -> (8, '14:00:00', '12:00:00', 8, 308, 8),
+    -> (9, '17:00:00', '15:00:00', 9, 309, 9),
+    -> (10, '20:00:00', '18:00:00', 10, 310, 10),
+    -> (11, '09:30:00', '07:30:00', 11, 311, 11),
+    -> (12, '12:30:00', '10:30:00', 12, 312, 12),
+    -> (13, '15:30:00', '13:30:00', 13, 313, 13),
+    -> (14, '18:30:00', '16:30:00', 14, 314, 14),
+    -> (15, '21:30:00', '19:30:00', 15, 315, 15),
+    -> (16, '08:45:00', '06:45:00', 16, 316, 16),
+    -> (17, '11:15:00', '09:15:00', 17, 317, 17),
+    -> (18, '14:45:00', '12:45:00', 18, 318, 18),
+    -> (19, '17:45:00', '15:45:00', 19, 319, 19),
+    -> (20, '20:45:00', '18:45:00', 20, 320, 20);
+
+mysql> INSERT INTO fare (fare_id, effective_date, expire_date, seatclass_id, flight_id, price) VALUES
+    -> (1, '2025-10-01', '2025-12-31', 1, 301, 5000),
+    -> (2, '2025-10-01', '2025-12-31', 2, 301, 8000),
+    -> (3, '2025-10-01', '2025-12-31', 3, 301, 12000),
+    -> (4, '2025-10-01', '2025-12-31', 4, 302, 5200),
+    -> (5, '2025-10-01', '2025-12-31', 5, 302, 8500),
+    -> (6, '2025-10-01', '2025-12-31', 6, 302, 12500),
+    -> (7, '2025-10-01', '2025-12-31', 7, 303, 4800),
+    -> (8, '2025-10-01', '2025-12-31', 8, 303, 7900),
+    -> (9, '2025-10-01', '2025-12-31', 9, 303, 11800),
+    -> (10, '2025-10-01', '2025-12-31', 10, 304, 5100),
+    -> (11, '2025-10-01', '2025-12-31', 11, 304, 8200),
+    -> (12, '2025-10-01', '2025-12-31', 12, 304, 12200),
+    -> (13, '2025-10-01', '2025-12-31', 13, 305, 5300),
+    -> (14, '2025-10-01', '2025-12-31', 14, 305, 8600),
+    -> (15, '2025-10-01', '2025-12-31', 15, 305, 12600),
+    -> (16, '2025-10-01', '2025-12-31', 16, 306, 4900),
+    -> (17, '2025-10-01', '2025-12-31', 17, 306, 8100),
+    -> (18, '2025-10-01', '2025-12-31', 18, 306, 11900),
+    -> (19, '2025-10-01', '2025-12-31', 19, 307, 5000),
+    -> (20, '2025-10-01', '2025-12-31', 20, 307, 8300);
+
+mysql> INSERT INTO seat_class (seat_class_id, class_name, description) VALUES
+    -> (1, 'Economy', 'Economy class seating'),
+    -> (2, 'Business', 'Business class seating'),
+    -> (3, 'First Class', 'First class seating'),
+    -> (4, 'Economy', 'Economy class seating'),
+    -> (5, 'Business', 'Business class seating'),
+    -> (6, 'First Class', 'First class seating'),
+    -> (7, 'Economy', 'Economy class seating'),
+    -> (8, 'Business', 'Business class seating'),
+    -> (9, 'First Class', 'First class seating'),
+    -> (10, 'Economy', 'Economy class seating'),
+    -> (11, 'Business', 'Business class seating'),
+    -> (12, 'First Class', 'First class seating'),
+    -> (13, 'Economy', 'Economy class seating'),
+    -> (14, 'Business', 'Business class seating'),
+    -> (15, 'First Class', 'First class seating'),
+    -> (16, 'Economy', 'Economy class seating'),
+    -> (17, 'Business', 'Business class seating'),
+    -> (18, 'First Class', 'First class seating'),
+    -> (19, 'Economy', 'Economy class seating'),
+    -> (20, 'Business', 'Business class seating');
+
